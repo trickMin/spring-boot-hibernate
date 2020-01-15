@@ -21,7 +21,7 @@ import java.util.List;
 public interface UserRepository extends JpaRepository<User, Integer> {
 
     /**
-     * 查询所有
+     * 用SQL语句查询所有
      * @return
      */
     @Query(value = "select * from user",nativeQuery = true)
