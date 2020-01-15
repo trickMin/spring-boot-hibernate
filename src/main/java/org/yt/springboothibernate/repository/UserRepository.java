@@ -5,7 +5,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.query.Param;
 import org.yt.springboothibernate.entity.User;
 
 import javax.transaction.Transactional;
@@ -26,6 +25,13 @@ public interface UserRepository extends JpaRepository<User, Integer> {
      */
     @Query(value = "select * from user",nativeQuery = true)
     List<User> listAllUsers();
+
+    /**
+     * 分页查询
+     * Page和Pageable都是spring.data中现有的类
+     * @param pageable
+     * @return
+     */
     Page<User> findAll(Pageable pageable);
 
     /**
@@ -46,8 +52,6 @@ public interface UserRepository extends JpaRepository<User, Integer> {
     @Modifying
     @Query("update User set username = ?1 where id = 4")
     int updateUsername(String username);
-
-
 
     /**
      * 联表查询可以自定义HQL查询
